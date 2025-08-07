@@ -7,6 +7,8 @@ on:
       - ".github/workflows/wiki-*.yml"
       - ".github/actions/**"
       - "Rakefile"
+      - "package.json"
+      - "pnpm-lock.yaml"
     branches:
       - main
   pull_request:
@@ -15,6 +17,8 @@ on:
       - ".github/workflows/wiki-*.yml"
       - ".github/actions/**"
       - "Rakefile"
+      - "package.json"
+      - "pnpm-lock.yaml"
   workflow_dispatch:
 
 jobs:
@@ -58,19 +62,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-      - name: Setup node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: .node-version
-          cache: "pnpm"
-
-      - name: Build wiki
-        working-directory: ./wiki
-        run: |
-          pnpm i
-          pnpm build
       - name: Build image
         uses: ./.github/actions/build
         with:

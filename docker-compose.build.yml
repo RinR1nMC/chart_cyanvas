@@ -1,0 +1,102 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
+      network: host
+
+    network_mode: "host"
+    depends_on:
+      - sub-chart
+      - sub-audio
+      - sub-image
+    volumes:
+      - ./.env:/app/.env
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  frontend:
+    build:
+      context: .
+      dockerfile: ./frontend/Dockerfile
+      network: host
+
+    volumes:
+      - ./.env:/app/.env
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3100"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  wiki:
+    build:
+      context: .
+      dockerfile: ./wiki/Dockerfile
+      network: host
+    network_mode: "host"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3101/wiki/logo.svg"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  sub-chart:
+    build:
+      context: .
+      dockerfile: ./sub-chart/Dockerfile
+      network: host
+
+    network_mode: "host"
+    volumes:
+      - ./.env:/app/.env
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3201"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  sub-audio:
+    build:
+      context: .
+      dockerfile: ./sub-audio/Dockerfile
+      network: host
+    network_mode: "host"
+    volumes:
+      - ./.env:/app/.env
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3202"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  sub-image:
+    build:
+      context: .
+      dockerfile: ./sub-image/Dockerfile
+      network: host
+    network_mode: "host"
+    volumes:
+      - ./.env:/app/.env
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3203"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  sub-temp-storage:
+    build:
+      context: .
+      dockerfile: ./sub-temp-storage/Dockerfile
+      network: host
+    network_mode: "host"
+    volumes:
+      - ./.env:/app/.env
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3204"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
