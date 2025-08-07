@@ -553,6 +553,7 @@ GEM
       rack (>= 2.2.4)
       redis-client (>= 0.22.2)
     spring (4.3.0)
+    stackprof (0.2.27)
     stringio (3.1.7)
     syntax_tree (6.2.0)
       prettier_print (>= 1.2.0)
@@ -601,7 +602,7 @@ DEPENDENCIES
   opentelemetry-instrumentation-all (~> 0.78.0)
   opentelemetry-sdk (~> 1.8)
   pg (~> 1.5)
-  puma (~> 6.4)
+  puma (~> 6.6)
   rails (~> 8.0)
   rails-i18n (~> 8.0)
   rbnacl (~> 7.1)
@@ -617,6 +618,7 @@ DEPENDENCIES
   shortuuid (~> 0.6.0)
   sidekiq (~> 7.3)
   spring
+  stackprof (~> 0.2.27)
   syntax_tree (~> 6.2)
   tzinfo-data
 
